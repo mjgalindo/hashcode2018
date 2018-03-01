@@ -42,7 +42,7 @@ for step in range(steps):
         
         for k, ride in rideData.items():
             distance = fdistance(v[0], ride[1])
-            targetValue = distance + ride[3] - step - 0.5*(ride[4] - ride[3])
+            targetValue = -(ride[5] + (bonus if step + distance <= ride[3] else 0))
             best.append([index, k, targetValue, distance])
 
     best.sort(key=lambda x: x[2])
