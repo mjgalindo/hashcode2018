@@ -1,7 +1,7 @@
 #!/usr/bin/env pypy
 import sys
 import math
-
+import random
 
 def fdistance(l1, l2):
     return abs(l1[0] - l2[0]) + abs(l1[1] - l2[1])
@@ -35,14 +35,17 @@ with open(fname, 'r') as f:
 for step in range(steps):
     if len(rideData) == 0:
         break
+    random.shuffle(vehicles)
     for v in vehicles:
-        smallestDist = 999999999
+        smallestTarget = 999999999
         nearestI = -1
         for k, ride in rideData.items():
-            distance = fdistance(v[0], ride[1]) + (ride[3] - step)
-            if distance < smallestDist:
-                smallestDist = distance
+            distance = fdistance(v[0], ride[1])
+            targetValue = distance + ride[3] - step
+            if targetValue < smallestTarget:
+                smallestTarget = targetValue
                 nearestI = ride[0]
+
         if nearestI != -1:
             a = rideData[nearestI]
             v[1] = a[5]
