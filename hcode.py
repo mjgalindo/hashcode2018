@@ -37,6 +37,8 @@ for step in range(steps):
         break
     random.shuffle(vehicles)
     for v in vehicles:
+        if v[1] > step:
+            continue
         smallestTarget = 999999999
         nearestI = -1
         for k, ride in rideData.items():
@@ -48,7 +50,7 @@ for step in range(steps):
 
         if nearestI != -1:
             a = rideData[nearestI]
-            v[1] = a[5]
+            v[1] = step + a[5]
             v[2].append(a[0])
             v[0] = a[2]
             del rideData[nearestI]
