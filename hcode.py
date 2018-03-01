@@ -39,7 +39,7 @@ for step in range(steps):
         smallestDist = 999999999
         nearestI = -1
         for k, ride in rideData.items():
-            distance = fdistance(v[0], ride[1])
+            distance = fdistance(v[0], ride[1]) + (ride[3] - step)
             if distance < smallestDist:
                 smallestDist = distance
                 nearestI = ride[0]
